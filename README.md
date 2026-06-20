@@ -63,10 +63,6 @@ Free-tier ARM (A1) capacity in popular regions is scarce. When someone releases 
 | `$SLEEP_SECONDS` | `60` | Pause at the end of a full round. |
 | `$RL_BACKOFF_0` | `20` | Initial 429 cooldown; doubles on consecutive 429s, capped at 300s. |
 
-## A note on rate limits & being a good citizen
-
-The defaults run roughly one launch call per minute — in line with what the established community scripts use. **Don't tighten them aggressively.** Hammering the LaunchInstance endpoint trips OCI's per-user throttle (HTTP 429) and sustained abuse can get a free-tier account flagged. Slower polling costs you almost nothing: freed capacity doesn't vanish in seconds for most accounts, and the truly reliable fix for chronic "out of capacity" is upgrading to **Pay As You Go** (still $0 for Always Free resources, with capacity priority).
-
 ## Notes
 
 - The instance launches with **no public IP** (`--assign-public-ip false`) to respect the free 2-ephemeral-IP limit. Assign one afterward in the console (Instance → Attached VNICs → IPv4 → Edit).
