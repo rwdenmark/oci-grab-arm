@@ -1,0 +1,6 @@
+# Personal OCI values — never commit (use oci_grab_arm.config.example.ps1 as the template)
+oci_grab_arm.config.ps1
+
+# Run log (created at runtime)
+oci_grab_arm_log.txt
+*.log
