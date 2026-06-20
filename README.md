@@ -1,12 +1,12 @@
 # oci-grab-arm
 
-A small PowerShell script that retries launching an **Oracle Cloud Always Free Ampere A1** instance until capacity becomes available — so you don't have to sit clicking "Create" in the console while it returns *"Out of host capacity."*
+A small PowerShell script that retries launching an **Oracle Cloud Always Free Ampere A1** instance until capacity becomes available, so you don't have to sit clicking "Create" in the console while it returns *"Out of host capacity."*
 
 It runs locally on Windows via the OCI CLI (no Cloud Shell session to keep alive), paces itself to stay under OCI's API rate limit, and stops safely the moment it grabs a slot.
 
 ## Why this exists
 
-Free-tier ARM (A1) capacity in popular regions is scarce. When someone releases capacity it's claimed within seconds, so manual retries rarely catch it. This script loops across all availability domains at a polite cadence and launches the instance the instant a slot opens.
+Free-tier ARM (A1) capacity in popular regions is scarce. When someone releases capacity it's claimed within seconds, so manual retries rarely catch it. This script loops across all availability domains and launches the instant a slot opens.
 
 ## What it does
 
@@ -61,7 +61,7 @@ Free-tier ARM (A1) capacity in popular regions is scarce. When someone releases 
 | `$BOOT_GB` | `100` | Boot volume size (GB). Free tier allows 200 GB total block storage. |
 | `$BETWEEN_ADS` | `45` | Seconds between AD attempts within a round (+ small jitter). |
 | `$SLEEP_SECONDS` | `60` | Pause at the end of a full round. |
-| `$RL_BACKOFF_0` | `20` | Initial 429 cooldown; doubles on consecutive 429s, capped at 300s. |
+| `$RL_BACKOFF_0` | `20` | Initial 429 cooldown. Doubles per consecutive 429, capped at 300s. |
 
 ## Notes
 
